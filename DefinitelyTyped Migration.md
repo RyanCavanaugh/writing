@@ -1,3 +1,8 @@
+# What's Next for DefinitelyTyped
+
+With the upcoming release of TypeScript 2.0 and its improved story for getting type definitions,
+  it's time for us to also bring some improvements to DefinitelyTyped.
+
 
 
 # Background
