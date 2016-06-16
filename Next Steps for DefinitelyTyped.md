@@ -57,7 +57,8 @@ Additionally, we'll be plowing through the large backlog of unmerged pull reques
 
 Finally, during the transitional phase,
   the TypeScript team will perform weekly merges from the `master` branch to the `2.0` branch.
-This will continue until 6 weeks after the 2.0 TypeScript release.
+This will continue until 6 weeks after the 2.0 TypeScript release;
+  see "timeline" section below.
 
 ## Clearer Ownership
 
@@ -93,3 +94,21 @@ To clarify this, we want to establish some terminology:
  * An *organization* definition is hosted in an external repo
  * A *first-party* definition comes from the underlying NPM package itself
 
+# Transition Plan
+
+An approximate timeline:
+
+* Immediately
+ * `types-2.0` branch goes live on DefinitelyTyped
+ * TypeScript team engages with the DefinitelyTyped pull request backlog and begins daily maintenance tasks
+ * TypeScript team takes weekly merges frm `master` to `types-2.0`
+* TypeScript 2.0 release (exact date TBD / confidential)
+ * PRs accepted to `types-2.0` branch
+ * No 2.0-specific syntax allowed in `master`; these go to `types-2.0`
+ * Merges to `types-2.0` done daily
+* 6 weeks after 2.0 release
+ * `master` merges to archive branch `ts1.8`
+ * PRs accepted to `ts1.8` branch for legacy users
+ * `types-2.0` branch merges to `master`
+* Ongoing
+ * TypeScript team continues daily maintenance tasks
