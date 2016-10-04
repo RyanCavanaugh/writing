@@ -23,7 +23,7 @@ This means that authors can validate their changes simply by running `tsc`.
 
 ## Comprehensive Documentation
 
-We've seen consistent feedback that the TypeScript documenation for writing definition files
+We've seen consistent feedback that the TypeScript documentation for writing definition files
   is incomplete and confusing.
 Many files today contain common errors or confusions resulting from the lack of clear documentation.
 
