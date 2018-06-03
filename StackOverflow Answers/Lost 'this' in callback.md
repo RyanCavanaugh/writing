@@ -1,7 +1,7 @@
 ## The Problem
 
 You have the classic JavaScript problem known as the *incorrect `this` context*.
-The [`this` keyword in JavaScript][1] behaves differently than in does in other languages like C# and Java.
+The [`this` keyword in JavaScript][1] behaves differently than it does in other languages like C# or Java.
 
 <!-- Call out the exact line here -->
 
@@ -16,15 +16,15 @@ The `this` keyword, in a function, is determined as follows:
 
 Let's look at how this works in practice:
 
-	class Foo {
-		value = 10;
-		doSomething() {
-			// Prints 'undefined', not '10'
-			console.log(this.value);
-		}
-	}
-	let f = new Foo();
-	window.setTimeout(f.doSomething, 100);
+    class Foo {
+        value = 10;
+        doSomething() {
+            // Prints 'undefined', not '10'
+            console.log(this.value);
+        }
+    }
+    let f = new Foo();
+    window.setTimeout(f.doSomething, 100);
 
 This code will print `undefined` (or, in strict mode, throw an exception).
 This is because we ended up in the last branch of the decision tree above.
@@ -34,10 +34,10 @@ We can't see the code for `setTimeout` to see what its invocation looks like, bu
 Something to realize is that all `doSomething` methods point to *the same function object*.
 In other words:
 
-	let f1 = new Foo();
-	let f2 = new Foo();
-	// 'true'
-	console.log(f1.doSomething === f2.doSomething);
+    let f1 = new Foo();
+    let f2 = new Foo();
+    // 'true'
+    console.log(f1.doSomething === f2.doSomething);
 
 We know that `setTimeout` can only see the function we passed it, so when it invokes that function,
   there's no way for it to know which `this` to provide.
@@ -47,15 +47,15 @@ The `this` context has been lost due to our *referencing* the method without *in
 
 Once you know about `this` problems, they're easy to spot:
 
-	class Foo {
-	    value = 10;
-		method1() {
-			doSomething(this.method2); // DANGER, method reference without invocation
-		}	
-		method2() {
-			console.log(this.value);
-		}
-	}
+    class Foo {
+        value = 10;
+        method1() {
+            doSomething(this.method2); // DANGER, method reference without invocation
+        }	
+        method2() {
+            console.log(this.value);
+        }
+    }
 
 ## The Solution
 
@@ -68,9 +68,9 @@ Instead of using the normal method syntax, use an [arrow function][3] to initial
 
     class DemonstrateScopingProblems {
         private status = "blah";
-    
+
         public run = () => {
-        	// OK
+            // OK
             console.log(this.status);
         }
     }
@@ -90,13 +90,13 @@ Shown here with some dummy parameters for explanatory reasons:
 
     class DemonstrateScopingProblems {
         private status = "blah";
-    	
-    	public something() {
-    		console.log(this.status);
-    	}
+
+        public something() {
+            console.log(this.status);
+        }
 
         public run(x: any, y: any) {
-        	// OK
+            // OK
             console.log(this.status + ': ' + x + ',' + y);
         }
     }
